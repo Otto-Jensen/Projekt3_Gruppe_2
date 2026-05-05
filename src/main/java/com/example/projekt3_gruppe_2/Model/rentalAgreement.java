@@ -1,15 +1,22 @@
 package com.example.projekt3_gruppe_2.Model;
 
+import java.util.Date;
+
 public class rentalAgreement {
     int id;
-    String name;
-    String adress;
+    Date startDato;
+    Date endDate;
+    int price;
+    location location;
 
 
-    public rentalAgreement(int id, String name, String adress){
+
+    public rentalAgreement(int id, Date startDato, Date endDate, int price, location location){
         this.id=id;
-        this.name=name;
-        this.adress=adress;
+        this.startDato=startDato;
+        this.endDate=endDate;
+        this.price=price;
+        this.location=location;
     }
 
 }

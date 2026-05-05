@@ -8,8 +8,10 @@ public class car {
     String model;
     String color;
     status status;
+    Integer rentalAgreementId;
+    Integer damageReportId;
 
-public car(int id, String cartNumber, String vin, String brand, String model, String color, status status){
+public car(int id, String cartNumber, String vin, String brand, String model, String color, status status, Integer rentalAgreementId, Integer damageReportId){
     this.id=id;
     this.cartNumber=cartNumber;
     this.vin=vin;
@@ -17,6 +19,12 @@ public car(int id, String cartNumber, String vin, String brand, String model, St
     this.model=model;
     this.color=color;
     this.status=status;
+    this.rentalAgreementId=rentalAgreementId;
+    this.damageReportId=damageReportId;
+}
+
+public car(int id, String cartNumber, String vin, String brand, String model, String color, status status){
+    this(id,cartNumber,vin,brand,model,color,status,null,null);
 }
 
     public int getId(){
@@ -73,6 +81,22 @@ public car(int id, String cartNumber, String vin, String brand, String model, St
 
     public void setVin(String vin) {
         this.vin = vin;
+    }
+
+    public Integer getRentalAgreementId() {
+        return rentalAgreementId;
+    }
+
+    public void setRentalAgreementId(Integer rentalAgreementId) {
+        this.rentalAgreementId = rentalAgreementId;
+    }
+
+    public Integer getDamageReportId() {
+        return damageReportId;
+    }
+
+    public void setDamageReportId(Integer damageReportId) {
+        this.damageReportId = damageReportId;
     }
 }
 
