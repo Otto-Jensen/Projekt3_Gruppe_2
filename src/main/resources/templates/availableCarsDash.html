@@ -2,38 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ledige Biler</title>
+    <title>Ledige biler</title>
 
     <style>
 
         body {
-            font-family: Arial;
-            background-color: #f4f4f4;
-            padding: 30px;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: lightgray;
         }
 
-        h1 {
-            text-align: center;
+        /* TOPBAR */
+
+        .topbar {
+            background-color: #240000;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
+
+        .topbar button {
+            background-color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search {
+            margin-left: auto;
+        }
+
+        .search input {
+            padding: 8px;
+            border-radius: 20px;
+            border: none;
+            width: 220px;
+        }
+
+        /* CARDS */
 
         .car-container {
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
+            gap: 40px;
+            padding: 50px;
         }
 
         .car-card {
             background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 200px;
-            box-shadow: 0px 0px 10px lightgray;
+            width: 180px;
+            border: 1px solid gray;
+            padding: 10px;
+            box-shadow: 2px 2px 5px gray;
         }
 
-        .status {
-            color: green;
-            font-weight: bold;
+        .car-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .rent-btn {
+            background-color: limegreen;
+            border: none;
+            padding: 5px 20px;
+            cursor: pointer;
+            float: right;
         }
 
     </style>
@@ -41,23 +75,55 @@
 </head>
 <body>
 
-<h1>Ledige Biler</h1>
+<div class="topbar">
+
+    <button>Ledige biler</button>
+    <button>Ikke ledige biler</button>
+    <button>Forhåndssalg af biler</button>
+    <button>Økonomi</button>
+
+    <div class="search">
+        <input type="text" placeholder="Søg bil">
+    </div>
+
+</div>
 
 <div class="car-container">
 
     <div class="car-card">
-        <h2>Tesla Model 3</h2>
-        <p>Status: <span class="status">Ledig</span></p>
+
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop" alt="Bil">
+
+        <p>Brand: Volvo</p>
+        <p>Type: Elektrisk</p>
+        <p>Model år: 2002</p>
+
+        <button class="rent-btn">Lej</button>
+
     </div>
 
     <div class="car-card">
-        <h2>BMW i4</h2>
-        <p>Status: <span class="status">Ledig</span></p>
+
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop" alt="Bil">
+
+        <p>Brand: Volvo</p>
+        <p>Type: Elektrisk</p>
+        <p>Model år: 2002</p>
+
+        <button class="rent-btn">Lej</button>
+
     </div>
 
     <div class="car-card">
-        <h2>Audi Q4 E-tron</h2>
-        <p>Status: <span class="status">Ledig</span></p>
+
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop" alt="Bil">
+
+        <p>Brand: Volvo</p>
+        <p>Type: Elektrisk</p>
+        <p>Model år: 2002</p>
+
+        <button class="rent-btn">Lej</button>
+
     </div>
 
 </div>
