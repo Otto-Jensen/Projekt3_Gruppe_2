@@ -9,5 +9,13 @@ public class pageController {
 
         return "availableCarsDash";
     }
+
+    @GetMapping("/unavailableCars")
+    public String unavailableCars() {
+
+        return "unavailableCarsDash";
+    }
+
+
 }
 
