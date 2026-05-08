@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Søg bil</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: lightgray;
+        }
+
+        /* TOPBAR */
+
+        .topbar {
+            background-color: #240000;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .topbar button {
+            background-color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-area {
+            display: flex;
+            justify-content: center;
+            margin-top: 80px;
+        }
+
+        .search-box {
+            background-color: white;
+            padding: 30px;
+            width: 500px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px gray;
+        }
+
+        .search-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            background-color: darkred;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .car-info {
+            margin-top: 30px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="topbar">
+
+    <button>Ledige biler</button>
+    <button>Ikke ledige biler</button>
+    <button>Forhåndssalg af biler</button>
+    <button>Økonomi</button>
+
+</div>
+
+<div class="search-area">
+
+    <div class="search-box">
+
+        <h2>Søg bil via stelnummer</h2>
+
+        <form action="/searchCar" method="get">
+
+            <input type="text"
+                   name="vin"
+                   placeholder="Indtast stelnummer">
+
+            <button type="submit">Søg</button>
+
+        </form>
+
+        <div class="car-info" th:if="${carFound}">
+
+            <h3>Bil information</h3>
+
+            <p><b>Brand:</b> Volvo</p>
+            <p><b>Model:</b> XC40</p>
+            <p><b>Stelnummer:</b> ABC123456</p>
+            <p><b>Status:</b> Ledig</p>
+
+        </div>
+
+        <div class="car-info" th:if="${notFound}">
+
+            <h3>Ingen bil fundet</h3>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
