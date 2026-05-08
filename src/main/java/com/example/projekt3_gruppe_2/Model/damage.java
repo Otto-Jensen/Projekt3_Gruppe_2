@@ -4,11 +4,14 @@ public class damage {
     int id;
     String description;
     int price;
+    Integer damageReportId;
 
-    public damage(int id, String description, int price){
+    public damage(int id, String description, int price, Integer damageReportId){
         this.id=id;
         this.description=description;
         this.price=price;
+        this.damageReportId=damageReportId;
+
     }
 
     public int getId() {
@@ -33,5 +36,13 @@ public class damage {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getDamageReportId() {
+        return damageReportId;
+    }
+
+    public void setDamageReportId(Integer damageReportId) {
+        this.damageReportId = damageReportId;
     }
 }
