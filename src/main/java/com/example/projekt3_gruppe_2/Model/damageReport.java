@@ -7,14 +7,14 @@ import java.util.List;
 public class damageReport {
     int id;
     Date date;
-    List<damage> damages = new ArrayList<>();
+    List<Damage> Damages = new ArrayList<>();
     int totalPrice;
 
     public damageReport(int id, Date date, int totalPrice){
         this.id=id;
         this.date=date;
         this.totalPrice=totalPrice;
-        this.damages=new ArrayList<>();
+        this.Damages =new ArrayList<>();
     }
 
     public int getId() {
@@ -41,19 +41,19 @@ public class damageReport {
         this.date = date;
     }
 
-    public void addDamage(damage damage){
-        damages.add(damage);
+    public void addDamage(Damage damage){
+        Damages.add(damage);
     }
 
-    public void removeDamage(damage damage){
-        damages.remove(damage);
+    public void removeDamage(Damage damage){
+        Damages.remove(damage);
     }
 
-    public List<damage> getDamages(){
-        return damages;
+    public List<Damage> getDamages(){
+        return Damages;
     }
 
-    public void setDamages(List<damage>damages){
-        this.damages=damages;
+    public void setDamages(List<Damage> Damages){
+        this.Damages = Damages;
     }
 }

@@ -1,12 +1,12 @@
 package com.example.projekt3_gruppe_2.Model;
 
-public class costumer {
+public class Costumer {
     int id;
     String name;
     int phoneNumber;
     String email;
 
-    public costumer(int id, String name, int phoneNumber, String email){
+    public Costumer(int id, String name, int phoneNumber, String email){
         this.id=id;
         this.name=name;
         this.phoneNumber=phoneNumber;

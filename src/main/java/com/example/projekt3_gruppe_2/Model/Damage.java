@@ -1,12 +1,12 @@
 package com.example.projekt3_gruppe_2.Model;
 
-public class damage {
+public class Damage {
     int id;
     String description;
     int price;
     Integer damageReportId;
 
-    public damage(int id, String description, int price, Integer damageReportId){
+    public Damage(int id, String description, int price, Integer damageReportId){
         this.id=id;
         this.description=description;
         this.price=price;

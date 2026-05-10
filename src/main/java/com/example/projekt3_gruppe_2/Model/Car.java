@@ -1,17 +1,17 @@
 package com.example.projekt3_gruppe_2.Model;
 
-public class car {
+public class Car {
     int id;
     String cartNumber;
     String vin;
     String brand;
     String model;
     String color;
-    status status;
+    Status status;
     Integer rentalAgreementId;
     Integer damageReportId;
 
-public car(int id, String cartNumber, String vin, String brand, String model, String color, status status, Integer rentalAgreementId, Integer damageReportId){
+public Car(int id, String cartNumber, String vin, String brand, String model, String color, Status status, Integer rentalAgreementId, Integer damageReportId){
     this.id=id;
     this.cartNumber=cartNumber;
     this.vin=vin;
@@ -23,9 +23,11 @@ public car(int id, String cartNumber, String vin, String brand, String model, St
     this.damageReportId=damageReportId;
 }
 
-public car(int id, String cartNumber, String vin, String brand, String model, String color, status status){
+public Car(int id, String cartNumber, String vin, String brand, String model, String color, Status status){
     this(id,cartNumber,vin,brand,model,color,status,null,null);
 }
+
+public Car(){}
 
     public int getId(){
     return id;
@@ -43,11 +45,11 @@ public car(int id, String cartNumber, String vin, String brand, String model, St
         this.cartNumber = cartNumber;
     }
 
-    public status getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(status status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
