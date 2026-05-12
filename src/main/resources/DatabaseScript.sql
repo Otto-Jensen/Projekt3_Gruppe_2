@@ -30,7 +30,7 @@ CREATE TABLE rentalAgreement(
                                 id INT AUTO_INCREMENT PRIMARY KEY,
                                 startDate DATE,
                                 endDate DATE,
-                                price INT,
+                                pice INT,
                                 pickup VARCHAR(255),
                                 costumer_id INT,
                                 FOREIGN KEY (costumer_id) REFERENCES costumer(id)
