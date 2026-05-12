@@ -17,6 +17,10 @@ public class damageReport {
         this.Damages =new ArrayList<>();
     }
 
+    public damageReport(){
+
+    }
+
     public int getId() {
         return id;
     }

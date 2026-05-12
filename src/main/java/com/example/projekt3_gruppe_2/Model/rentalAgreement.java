@@ -12,13 +12,17 @@ public class rentalAgreement {
 
 
 
-    public rentalAgreement(int id, Date startDato, Date endDate, int price, Location location, Integer customerId){
+    public rentalAgreement(int id, Date startDato, Date endDate, int price,Location location, Integer customerId){
         this.id=id;
         this.startDato=startDato;
         this.endDate=endDate;
         this.price=price;
         this.location=location;
         this.customerId=customerId;
+    }
+
+    public rentalAgreement(){
+
     }
 
     public int getId() {
@@ -37,12 +41,12 @@ public class rentalAgreement {
         this.customerId = customerId;
     }
 
-    public int getPrice() {
+    public int getprice() {
         return price;
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        this.price=price;
     }
 
     public Location getLocation() {

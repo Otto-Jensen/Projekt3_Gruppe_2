@@ -1,6 +1,7 @@
 package com.example.projekt3_gruppe_2.Repository;
 
 import com.example.projekt3_gruppe_2.Model.Car;
+import com.example.projekt3_gruppe_2.Model.Damage;
 import com.example.projekt3_gruppe_2.Model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,6 +35,8 @@ public class carRepo {
 
                 String statusString=resultSet.getString("car_status");
                 car.setStatus(Status.valueOf(statusString));
+                car.setRentalAgreementId(resultSet.getObject("rentalAgreement_id", Integer.class));
+                car.setDamageReportId(resultSet.getObject("damageReport_id", Integer.class));
 
                 carList.add(car);
             }
@@ -62,6 +65,8 @@ public class carRepo {
 
                     String statusString=resultSet.getString("car_status");
                     car.setStatus(Status.valueOf(statusString));
+                    car.setRentalAgreementId(resultSet.getObject("rentalAgreement_id", Integer.class));
+                    car.setDamageReportId(resultSet.getObject("damageReport_id", Integer.class));
                 }
             }
         }catch (SQLException e){
@@ -85,7 +90,7 @@ public class carRepo {
     }
 
     public void saveCar (Car car){
-        String sql="INSERT INTO car(cartNumber, vin, brand, model, color, car_status) VALUES (?,?,?,?,?,?)";
+        String sql="INSERT INTO car(cartNumber, vin, brand, model, color, car_status,rentalAgreement_id,damageReport_id) VALUES (?,?,?,?,?,?,?,?)";
 
         try (Connection connection=dataSource.getConnection();
         PreparedStatement statement=connection.prepareStatement(sql)){
@@ -95,6 +100,8 @@ public class carRepo {
             statement.setString(4,car.getModel());
             statement.setString(5,car.getColor());
             statement.setString(6,car.getStatus().toString());
+            statement.setNull(7, Types.INTEGER);
+            statement.setNull(8, Types.INTEGER);
 
             statement.executeUpdate();
 

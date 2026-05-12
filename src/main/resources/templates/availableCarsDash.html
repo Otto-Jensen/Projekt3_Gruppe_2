@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Ledige biler</title>
@@ -90,42 +90,17 @@
 
 <div class="car-container">
 
-    <div class="car-card">
+    <div class="car-card" th:each="car : ${carList}">
 
         <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop" alt="Bil">
 
-        <p>Brand: Volvo</p>
-        <p>Type: Elektrisk</p>
-        <p>Model år: 2002</p>
+        <p th:text="'Brand: ' + ${car.brand}">Brand</p>
+        <p th:text="'Model: ' + ${car.model}">Model</p>
+        <p th:text="'Farve: ' + ${car.color}">Farve</p>
 
         <button class="rent-btn">Lej</button>
 
     </div>
-
-    <div class="car-card">
-
-        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop" alt="Bil">
-
-        <p>Brand: Volvo</p>
-        <p>Type: Elektrisk</p>
-        <p>Model år: 2002</p>
-
-        <button class="rent-btn">Lej</button>
-
-    </div>
-
-    <div class="car-card">
-
-        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop" alt="Bil">
-
-        <p>Brand: Volvo</p>
-        <p>Type: Elektrisk</p>
-        <p>Model år: 2002</p>
-
-        <button class="rent-btn">Lej</button>
-
-    </div>
-
 </div>
 
 </body>

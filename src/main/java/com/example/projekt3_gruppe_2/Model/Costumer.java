@@ -13,6 +13,8 @@ public class Costumer {
         this.email=email;
     }
 
+    public Costumer(){}
+
     public int getId() {
         return id;
     }
