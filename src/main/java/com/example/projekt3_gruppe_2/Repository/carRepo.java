@@ -62,6 +62,16 @@ public class carRepo {
 
                     String statusString=resultSet.getString("car_status");
                     car.setStatus(Status.valueOf(statusString));
+
+                    int rentalAgreementId = resultSet.getInt("rentalAgreement_id");
+                    if (!resultSet.wasNull()) {
+                        car.setRentalAgreementId(rentalAgreementId);
+                    }
+
+                    int damageReportId = resultSet.getInt("damageReport_id");
+                    if (!resultSet.wasNull()) {
+                        car.setDamageReportId(damageReportId);
+                    }
                 }
             }
         }catch (SQLException e){

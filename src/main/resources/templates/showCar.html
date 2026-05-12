@@ -1,10 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Car Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #007bff;
+            font-size: 0.9em;
+        }
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
 </head>
 <body>
+
+<div class="container">
+    <a class="back-btn" th:href="@{/availableCars}">&#8592; Gå tilbage</a>
+    <h1>Car Details</h1>
+
+    <div class="section" th:if="${car != null}">
+        <h2>Vehicle Information</h2>
+        <div class="info-grid">
+            <span class="label">ID:</span> <span th:text="${car.id}"></span>
+            <span class="label">Brand:</span> <span th:text="${car.brand}"></span>
+            <span class="label">Model:</span> <span th:text="${car.model}"></span>
+            <span class="label">Color:</span> <span th:text="${car.color}"></span>
+            <span class="label">Cart Number:</span> <span th:text="${car.cartNumber}"></span>
+            <span class="label">VIN:</span> <span th:text="${car.vin}"></span>
+            <span class="label">Status:</span> 
+            <span>
+                <span class="badge" th:text="${car.status}"></span>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="section" th:if="${rentalAgreement != null}">
+        <h2>Rental Agreement</h2>
+        <div class="info-grid">
+            <span class="label">Agreement ID:</span> <span th:text="${rentalAgreement.id}"></span>
+            <span class="label">Start Date:</span> <span th:text="${#dates.format(rentalAgreement.startDato, 'yyyy-MM-dd')}"></span>
+            <span class="label">End Date:</span> <span th:text="${#dates.format(rentalAgreement.endDate, 'yyyy-MM-dd')}"></span>
+            <span class="label">Price:</span> <span th:text="${rentalAgreement.price} + ' kr.'"></span>
+            <span class="label">Pickup Location:</span> <span th:text="${rentalAgreement.location != null ? rentalAgreement.location.adress : 'N/A'}"></span>
+        </div>
+
+        <div th:if="${costumer != null}" style="margin-top: 15px;">
+            <h3>Customer Info</h3>
+            <div class="info-grid">
+                <span class="label">Name:</span> <span th:text="${costumer.name}"></span>
+                <span class="label">Phone:</span> <span th:text="${costumer.phoneNumber}"></span>
+                <span class="label">Email:</span> <span th:text="${costumer.email}"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section" th:if="${damageReport != null}">
+        <h2>Damage Report</h2>
+        <div class="info-grid">
+            <span class="label">Report ID:</span> <span th:text="${damageReport.id}"></span>
+            <span class="label">Inspection Date:</span> <span th:text="${#dates.format(damageReport.date, 'yyyy-MM-dd')}"></span>
+            <span class="label">Total Price:</span> <span th:text="${damageReport.totalPrice} + ' kr.'"></span>
+        </div>
+
+        <div th:if="${damageReport.damages != null and !damageReport.damages.isEmpty()}">
+            <h3>Registered Damages</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Price (kr.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="damage : ${damageReport.damages}">
+                        <td th:text="${damage.description}"></td>
+                        <td th:text="${damage.price}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div th:if="${car == null}">
+        <p>Car not found.</p>
+    </div>
+</div>
 
 </body>
 </html>
