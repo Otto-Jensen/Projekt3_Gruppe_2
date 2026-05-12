@@ -98,7 +98,10 @@
         <p th:text="'Model: ' + ${car.model}">Model</p>
         <p th:text="'Farve: ' + ${car.color}">Farve</p>
 
-        <button class="rent-btn">Lej</button>
+        <a th:href="@{/car/{id}(id=${car.id})}">
+            <button class="rent-btn">Lej</button>
+        </a>
+
 
     </div>
 </div>
