@@ -1,22 +1,34 @@
 package com.example.projekt3_gruppe_2.Controller;
 
-import com.example.projekt3_gruppe_2.Model.Car;
+import com.example.projekt3_gruppe_2.Model.*;
 import com.example.projekt3_gruppe_2.Repository.carRepo;
-import com.example.projekt3_gruppe_2.Model.Costumer;
+import com.example.projekt3_gruppe_2.Repository.costumerRepo;
+import com.example.projekt3_gruppe_2.Repository.damageReportRepo;
+import com.example.projekt3_gruppe_2.Repository.rentalAgreementRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.sql.DataSource;
-import java.util.ArrayList;
+
 
 @Controller
 public class pageController {
 
     @Autowired
     carRepo carRepo;
+
+    @Autowired
+    costumerRepo costumerRepo;
+
+    @Autowired
+    rentalAgreementRepo rentalRepo;
+
+    @Autowired
+    damageReportRepo damageReportRepo;
 
 
     @GetMapping("/")
@@ -27,8 +39,8 @@ public class pageController {
     }
 
     @GetMapping("/unavailableCars")
-    public String unavailableCars() {
-
+    public String unavailableCars(Model model) {
+model.addAttribute("carList", carRepo.getAllCars());
         return "unavailableCarsDash";
     }
 
@@ -38,7 +50,30 @@ public class pageController {
         Car car = carRepo.getCarbyId(id);
         model.addAttribute("car", car);
 
+        if(car.getRentalAgreementId()!=null){
+            rentalAgreement rental = rentalRepo.getRentalbyId(car.getRentalAgreementId());
+            model.addAttribute("rental", rental);
+
+            if(rental.getCostumerId()!=null){
+                Costumer costumer = costumerRepo.getCostumerbyId(rental.getCostumerId());
+                model.addAttribute("costumer", costumer);
+            }
+        }
+
+        if(car.getDamageReportId()!=null){
+            damageReport dmgReport = damageReportRepo.getDamageReportbyId(car.getDamageReportId());
+            model.addAttribute("damageReport",dmgReport);
+        }
+
         return "showCar";
+    }
+
+    @PostMapping("/car/status/{id}")
+    public String updateStatus(@PathVariable int id, @RequestParam String status){
+        Car car = carRepo.getCarbyId(id);
+        car.setStatus(Status.valueOf(status));
+        carRepo.editCar(car);
+        return"redirect:/car/"+id;
     }
 
 
@@ -48,9 +83,14 @@ public class pageController {
         Car car = carRepo.getCarbyId(id);
         model.addAttribute("car", car);
         model.addAttribute("costumer", new Costumer());
+        model.addAttribute("rental", new rentalAgreement());
 
         return "costumerInfo";
     }
+
+
+
+
 
 }
 

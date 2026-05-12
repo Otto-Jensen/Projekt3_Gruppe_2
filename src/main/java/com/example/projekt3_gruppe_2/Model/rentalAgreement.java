@@ -8,17 +8,17 @@ public class rentalAgreement {
     Date endDate;
     int price;
     Location location;
-    Integer customerId;
+    Integer costumerId;
 
 
 
-    public rentalAgreement(int id, Date startDato, Date endDate, int price,Location location, Integer customerId){
+    public rentalAgreement(int id, Date startDato, Date endDate, int price,Location location, Integer costumerId){
         this.id=id;
         this.startDato=startDato;
         this.endDate=endDate;
         this.price=price;
         this.location=location;
-        this.customerId=customerId;
+        this.costumerId=costumerId;
     }
 
     public rentalAgreement(){
@@ -33,15 +33,15 @@ public class rentalAgreement {
         this.id = id;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
+    public Integer getCostumerId() {
+        return costumerId;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setCostumerId(Integer costumerId) {
+        this.costumerId = costumerId;
     }
 
-    public int getprice() {
+    public int getPrice() {
         return price;
     }
 

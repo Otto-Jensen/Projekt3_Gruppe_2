@@ -36,7 +36,7 @@ public class rentalAgreementRepo {
 
                 String locationString =resultSet.getString("pickup");
                 rental.setLocation(Location.valueOf(locationString));
-                rental.setCustomerId(resultSet.getObject("costumer_id", Integer.class));
+                rental.setCostumerId(resultSet.getObject("costumer_id", Integer.class));
 
                 rentalList.add(rental);
 
@@ -49,7 +49,7 @@ public class rentalAgreementRepo {
 
 
     public rentalAgreement getRentalbyId(int id){
-        rentalAgreement rental=new rentalAgreement();
+        rentalAgreement rental=null;
         String sql="SELECT * FROM rentalAgreement WHERE id=?";
 
         try(Connection connection = dataSource.getConnection();
@@ -58,6 +58,7 @@ public class rentalAgreementRepo {
 
             try(ResultSet resultSet=statement.executeQuery()){
                 if(resultSet.next()){
+                    rental=new rentalAgreement();
                     rental.setId(resultSet.getInt("id"));
                     rental.setStartDato(resultSet.getDate("startDate"));
                     rental.setEndDate(resultSet.getDate("endDate"));
@@ -65,7 +66,7 @@ public class rentalAgreementRepo {
 
                     String locationString = resultSet.getString("pickup");
                     rental.setLocation(Location.valueOf(locationString));
-                    rental.setCustomerId(resultSet.getObject("costumer_id", Integer.class));
+                    rental.setCostumerId(resultSet.getObject("costumer_id", Integer.class));
 
                 }
             }
@@ -97,14 +98,29 @@ public class rentalAgreementRepo {
         PreparedStatement statement=connection.prepareStatement(sql)){
             statement.setDate(1,new java.sql.Date(rental.getStartDato().getTime()));
             statement.setDate(2, new java.sql.Date(rental.getEndDate().getTime()));
-            statement.setInt(3,rental.getprice());
+            statement.setInt(3,rental.getPrice());
             statement.setString(4,rental.getLocation().toString());
-            statement.setObject(5, rental.getCustomerId());
+            statement.setObject(5, rental.getCostumerId());
 
             statement.executeUpdate();
 
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public int getLastInstertedId(){
+        String sql="SELECT LAST_INSERT_ID()";
+        try(Connection connection=dataSource.getConnection();
+            PreparedStatement statement=connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery()){
+
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

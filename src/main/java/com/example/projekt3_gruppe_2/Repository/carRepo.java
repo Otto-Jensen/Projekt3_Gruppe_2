@@ -47,7 +47,7 @@ public class carRepo {
     }
 
     public Car getCarbyId(int id){
-        Car car = new Car();
+        Car car = null;
         String sql ="SELECT * FROM car WHERE  id=?";
 
         try(Connection connection = dataSource.getConnection();
@@ -56,6 +56,7 @@ public class carRepo {
 
             try(ResultSet resultSet=statement.executeQuery()){
                 if(resultSet.next()){
+                    car = new Car();
                     car.setId(resultSet.getInt("id"));
                     car.setCartNumber(resultSet.getString("cartNumber"));
                     car.setVin(resultSet.getString("vin"));
@@ -106,6 +107,24 @@ public class carRepo {
             statement.executeUpdate();
 
         }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void editCar(Car car){
+        String sql="UPDATE car SET car_status=?, rentalAgreement_id=?, damageReport_id=? WHERE id=?";
+
+        try(Connection connection=dataSource.getConnection();
+            PreparedStatement statement=connection.prepareStatement(sql)){
+
+            statement.setString(1,car.getStatus().toString());
+            statement.setObject(2,car.getRentalAgreementId());
+            statement.setObject(3,car.getDamageReportId());
+            statement.setInt(4,car.getId());
+
+            statement.executeUpdate();
+
+        }catch (SQLException e){
             e.printStackTrace();
         }
     }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -93,5 +94,20 @@ public Costumer getCostumerbyId(int id){
        }catch (SQLException e){
            e.printStackTrace();
        }
+    }
+
+    public int getLastInstertedId(){
+        String sql="SELECT LAST_INSERT_ID()";
+        try(Connection connection=dataSource.getConnection();
+            PreparedStatement statement=connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery()){
+
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

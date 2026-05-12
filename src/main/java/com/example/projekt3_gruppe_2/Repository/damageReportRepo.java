@@ -88,4 +88,19 @@ public class damageReportRepo {
             e.printStackTrace();
         }
     }
+
+    public int getLastInstertedId(){
+        String sql="SELECT LAST_INSERT_ID()";
+        try(Connection connection=dataSource.getConnection();
+            PreparedStatement statement=connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery()){
+
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }
