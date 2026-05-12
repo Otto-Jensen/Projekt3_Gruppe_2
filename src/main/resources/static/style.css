@@ -1,0 +1,20 @@
+.image-gallery{
+    display:flex;
+    flex-direction:row;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.image-gallery img{
+    width:200px;
+    height:140px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.car-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 50px;
+}

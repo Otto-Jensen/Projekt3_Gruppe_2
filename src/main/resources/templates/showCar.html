@@ -1,10 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bil detaljer</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background-color: lightgray;
+            margin:0;
+        }
+
+        .container{
+            width:900px;
+            margin:50px auto;
+            background-color:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:2px 2px 10px gray;
+        }
+
+        .image-gallery{
+            display:flex;
+            gap:10px;
+            overflow-x:auto;
+        }
+
+        .image-gallery img{
+            width:200px;
+            height:140px;
+            object-fit:cover;
+            border-radius:10px;
+        }
+
+        .info{
+            margin-top:20px;
+        }
+
+        .info p{
+            font-size:18px;
+        }
+
+        .btn{
+            margin-top:20px;
+            padding:10px 20px;
+            border:none;
+            background-color:green;
+            color:white;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+    </style>
+
 </head>
+
 <body>
+
+<div class="container">
+
+    <div th:switch="${car.brand}">
+
+        <img th:case="'Toyota'"
+             src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=1000&auto=format&fit=crop">
+
+        <img th:case="'Ford'"
+             src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop">
+
+        <img th:case="'BMW'"
+             src="https://images.unsplash.com/photo-1556189250-72ba954cfc2b?q=80&w=1000&auto=format&fit=crop">
+
+        <img th:case="'Volvo'"
+             src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop">
+
+        <img th:case="*"
+             src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop">
+
+    </div>
+
+
+
+    <h1 th:text="${car.brand} + ' ' + ${car.model}"></h1>
+
+    <div class="info">
+
+        <p><b>Farve:</b> <span th:text="${car.color}"></span></p>
+
+        <p><b>Status:</b> <span th:text="${car.status}"></span></p>
+
+        <p><b>Stelnummer:</b> <span th:text="${car.vin}"></span></p>
+
+        <p><b>Vognnummer:</b> <span th:text="${car.cartNumber}"></span></p>
+
+    </div>
+
+    <a th:href="@{/customerInfo/{id}(id=${car.id})}">
+        <button class="btn">
+            Opret lejeaftale
+        </button>
+    </a>
+
+</div>
 
 </body>
 </html>
