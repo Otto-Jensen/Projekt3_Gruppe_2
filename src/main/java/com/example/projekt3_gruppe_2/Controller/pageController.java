@@ -45,7 +45,7 @@ public class pageController {
         return "availableCarsDash";
     }
 
-    @GetMapping("/unavailableCars")
+    @GetMapping("/unavailableCarsDash")
     public String unavailableCars(Model model) {
         ArrayList<Car>unAvailCars= new ArrayList<>();
         for(Car car: carRepo.getAllCars()){
@@ -55,7 +55,7 @@ public class pageController {
                 unAvailCars.add(car);
             }
         }
-        model.addAttribute("carList", carRepo.getAllCars());
+        model.addAttribute("carList", unAvailCars);
         return "unavailableCarsDash";
     }
 

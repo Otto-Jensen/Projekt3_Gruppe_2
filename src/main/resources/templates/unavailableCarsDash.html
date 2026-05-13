@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Ikke ledige biler</title>
+    <title>Ledige biler</title>
 
     <style>
 
@@ -22,12 +22,23 @@
             gap: 20px;
         }
 
-        .topbar button {
+        .topbar button, .topbar-btn {
             background-color: white;
             border: none;
             padding: 8px 15px;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        .create-btn{
+            background-color:green;
+            color:white;
+        }
+
+        .create-btn-container{
+            display:flex;
+            justify-content: center;
+            margin-top:30px;
         }
 
         .search {
@@ -62,11 +73,11 @@
             height: auto;
         }
 
-        .unavailable-btn {
-            background-color: red;
-            color: white;
+        .rent-btn {
+            background-color: limegreen;
             border: none;
             padding: 5px 20px;
+            cursor: pointer;
             float: right;
         }
 
@@ -77,7 +88,7 @@
 
 <div class="topbar">
 
-    <button>Ledige biler</button>
+    <a th:href="@{availableCarsDash.html}"><button>Ledige biler</button></a>
     <button>Ikke ledige biler</button>
     <button>Forhåndssalg af biler</button>
     <button>Økonomi</button>
@@ -90,42 +101,20 @@
 
 <div class="car-container">
 
-    <div class="car-card">
+    <div class="car-card" th:each="car : ${carList}">
 
         <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop" alt="Bil">
 
-        <p>Brand: Volvo</p>
-        <p>Type: Elektrisk</p>
-        <p>Model år: 2002</p>
+        <p th:text="'Brand: ' + ${car.brand}">Brand</p>
+        <p th:text="'Model: ' + ${car.model}">Model</p>
+        <p th:text="'Farve: ' + ${car.color}">Farve</p>
 
-        <button class="unavailable-btn">Udlejet</button>
+        <a th:href="@{/car/{id}(id=${car.id})}">
+            <button class="rent-btn">Lej</button>
+        </a>
 
-    </div>
-
-    <div class="car-card">
-
-        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop" alt="Bil">
-
-        <p>Brand: Volvo</p>
-        <p>Type: Elektrisk</p>
-        <p>Model år: 2002</p>
-
-        <button class="unavailable-btn">Udlejet</button>
 
     </div>
-
-    <div class="car-card">
-
-        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1000&auto=format&fit=crop" alt="Bil">
-
-        <p>Brand: Volvo</p>
-        <p>Type: Elektrisk</p>
-        <p>Model år: 2002</p>
-
-        <button class="unavailable-btn">Udlejet</button>
-
-    </div>
-
 </div>
 
 </body>

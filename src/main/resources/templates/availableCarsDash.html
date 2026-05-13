@@ -12,7 +12,7 @@
             background-color: lightgray;
         }
 
-        /* TOPBAR */
+
 
         .topbar {
             background-color: #240000;
@@ -52,7 +52,7 @@
             width: 220px;
         }
 
-        /* CARDS */
+
 
         .car-container {
             display: flex;
@@ -89,7 +89,7 @@
 <div class="topbar">
 
     <button>Ledige biler</button>
-    <button>Ikke ledige biler</button>
+    <a th:href="@{/unavailableCarsDash}"> <button>Ikke ledige biler</button></a>
     <button>Forhåndssalg af biler</button>
     <button>Økonomi</button>
 
