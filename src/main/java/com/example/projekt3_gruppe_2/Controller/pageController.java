@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 
 
 @Controller
@@ -33,14 +34,28 @@ public class pageController {
 
     @GetMapping("/")
     public String availableCars(Model model) {
+        ArrayList<Car> availCars = new ArrayList<>();
 
-        model.addAttribute("carList", carRepo.getAllCars());
+        for(Car car: carRepo.getAllCars()){
+            if(car.getStatus()==Status.AVAILABLE){
+                availCars.add(car);
+            }
+        }
+        model.addAttribute("carList", availCars);
         return "availableCarsDash";
     }
 
     @GetMapping("/unavailableCars")
     public String unavailableCars(Model model) {
-model.addAttribute("carList", carRepo.getAllCars());
+        ArrayList<Car>unAvailCars= new ArrayList<>();
+        for(Car car: carRepo.getAllCars()){
+            if(car.getStatus()==Status.RENTED){
+                unAvailCars.add(car);
+            }else if(car.getStatus()==Status.UNDER_REPAIR){
+                unAvailCars.add(car);
+            }
+        }
+        model.addAttribute("carList", carRepo.getAllCars());
         return "unavailableCarsDash";
     }
 
